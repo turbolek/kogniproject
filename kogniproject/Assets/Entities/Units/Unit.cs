@@ -36,9 +36,19 @@ public class Unit : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Entity>() != null)
+        Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
+        if ( colliderEntity == null)
         {
+            return;
+        }
+
+        Unit colliderUnit = colliderEntity.GetComponent<Unit>();
+        if ( colliderUnit != null && colliderUnit.owner != owner && !colliderUnit.engaged)
+        {
+            colliderUnit.engaged = true;
             engaged = true;
+            gameObject.layer = 8;
+            colliderUnit.gameObject.layer = 8;
         }
         
     }
