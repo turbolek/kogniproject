@@ -36,17 +36,22 @@ public class Unit : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //Check if collider is an entity (could be ground for example)
         Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
         if ( colliderEntity == null)
         {
             return;
         }
 
+        //Check if collider is a unit (could be a castle for example)
         Unit colliderUnit = colliderEntity.GetComponent<Unit>();
+
+        //Engage with an enemy unit that is not yet engaged
         if ( colliderUnit != null && colliderUnit.owner != owner && !colliderUnit.engaged)
         {
             colliderUnit.engaged = true;
             engaged = true;
+            //Move engaged units to another layer for avoiding collisions with other units
             gameObject.layer = 8;
             colliderUnit.gameObject.layer = 8;
         }
