@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Unit : Entity
 {
-    //TODO get player object instead of bool
-    public bool owner;
     private Vector2 direction;
     public float speed;
     protected Entity target = null;
@@ -43,11 +41,15 @@ public class Unit : Entity
     {
         Debug.Log("Collided");
         //Check if collider is an entity (could be ground for example)
-        target = collision.gameObject.GetComponent<Entity>();
-        if (target == null)
+        Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
+        if (colliderEntity == null)
         {
-            Debug.Log("Collided but target == null");
             return;
+        }
+
+        if (colliderEntity.owner != owner)
+        {
+            target = colliderEntity;
         }
        
     }

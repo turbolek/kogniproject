@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour {
     protected int healthPoints;
     private int currentHealtPoints;
     public Image healthBar;
+    //TODO get player object instead of bool
+    public bool owner;
 
     protected virtual void Start()
     {
