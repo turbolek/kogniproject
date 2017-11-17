@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private int healthPoints;
+
+    public void TakeDamage(int damage)
+    {
+        healthPoints -= damage;
+        if (healthPoints <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -8,21 +8,25 @@ public class Unit : MonoBehaviour
     public bool owner;
     private Vector2 direction;
     public float speed;
-    private bool engaged = false;
+    protected Entity target = null;
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         int x = owner ? 1 : -1;
         direction = new Vector2(x, 0);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        if (!engaged)
+        if (!target)
         {
+            gameObject.layer = 0;
             Move();
+        } else
+        {
+            gameObject.layer = 8;
         }
         
     }
@@ -36,27 +40,14 @@ public class Unit : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collided");
         //Check if collider is an entity (could be ground for example)
-        Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
-        if ( colliderEntity == null)
+        target = collision.gameObject.GetComponent<Entity>();
+        if (target == null)
         {
+            Debug.Log("Collided but target == null");
             return;
         }
-
-        //Check if collider is a unit (could be a castle for example)
-        Unit colliderUnit = colliderEntity.GetComponent<Unit>();
-
-        //Engage with an enemy unit that is not yet engaged
-        if ( colliderUnit != null && colliderUnit.owner != owner && !colliderUnit.engaged)
-        {
-            colliderUnit.engaged = true;
-            engaged = true;
-            //Move engaged units to another layer for avoiding collisions with other units
-            gameObject.layer = 8;
-            colliderUnit.gameObject.layer = 8;
-        }
-        
+       
     }
-
-
 }
