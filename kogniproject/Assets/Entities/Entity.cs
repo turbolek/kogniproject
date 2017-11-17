@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Entity : MonoBehaviour {
 
     [SerializeField]
-    private int healthPoints;
+    protected int healthPoints;
+    private int currentHealtPoints;
+    public Image healthBar;
+
+    protected virtual void Start()
+    {
+        currentHealtPoints = healthPoints;
+        Debug.Log(gameObject + " current health: " + currentHealtPoints);
+    }
 
     public void TakeDamage(int damage)
     {
-        healthPoints -= damage;
-        if (healthPoints <= 0)
+        Debug.Log(gameObject + " takes damage ");
+        currentHealtPoints -= damage;
+        Debug.Log(gameObject + " current health: " + currentHealtPoints);
+        UpdateHealthBar();
+        if (currentHealtPoints <= 0)
         {
             Die();
         }
@@ -18,6 +30,12 @@ public class Entity : MonoBehaviour {
 
     private void Die()
     {
+        Debug.Log(gameObject + " dies ");
         Destroy(gameObject);
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.fillAmount = Mathf.Clamp(((float)currentHealtPoints / (float)healthPoints), 0f, 1f);       
     }
 }

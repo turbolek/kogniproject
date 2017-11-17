@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : Entity
 {
     //TODO get player object instead of bool
     public bool owner;
@@ -11,8 +11,9 @@ public class Unit : MonoBehaviour
     protected Entity target = null;
 
     // Use this for initialization
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         int x = owner ? 1 : -1;
         direction = new Vector2(x, 0);
     }
