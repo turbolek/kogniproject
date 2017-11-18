@@ -31,7 +31,7 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         Debug.Log(gameObject + " dies ");
         Destroy(gameObject);
