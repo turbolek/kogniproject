@@ -15,8 +15,8 @@ TagManager:
   - 
   - Engaged
   - Ground
-  - 
-  - 
+  - Player 1
+  - Player 2
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entities
+    uniqueID: 4239731023
     locked: 0

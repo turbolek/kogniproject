@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-    public bool owner;
+    public Player owner;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +18,8 @@ public class Spawner : MonoBehaviour {
 
     public void spawnUnit(Transform unitPrefab)
     {
-        Transform unit = Instantiate(unitPrefab, gameObject.transform.position, Quaternion.identity);
-        unit.parent = gameObject.transform;
-    
+        Transform unitTransform = Instantiate(unitPrefab, gameObject.transform.position, Quaternion.identity);
+        unitTransform.parent = gameObject.transform;
+        unitTransform.GetComponent<Unit>().owner = owner;
     }
 }

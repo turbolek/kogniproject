@@ -10,10 +10,11 @@ public class Entity : MonoBehaviour {
     private int currentHealtPoints;
     public Image healthBar;
     //TODO get player object instead of bool
-    public bool owner;
+    public Player owner;
 
     protected virtual void Start()
     {
+        gameObject.layer = owner.layerIndex;
         currentHealtPoints = healthPoints;
         Debug.Log(gameObject + " current health: " + currentHealtPoints);
     }
