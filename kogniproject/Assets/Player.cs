@@ -13,11 +13,5 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start () {
         directionVector = new Vector2(direction, 0);
-        Debug.Log("Direction vector for " + gameObject + " : " + directionVector);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        Debug.Log("Player update");
-	}
 }
