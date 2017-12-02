@@ -18,7 +18,6 @@ public class Unit : Entity
     {
         if (!target)
         {
-            Debug.Log("Moving");
             gameObject.layer = owner.layerIndex;
             Move();
         } else if (target.GetComponent<Unit>())
@@ -37,7 +36,6 @@ public class Unit : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collided with " + collision.gameObject);
         //Check if collider is an entity (could be ground for example)
         Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
         if (colliderEntity == null)

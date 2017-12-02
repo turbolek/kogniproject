@@ -33,23 +33,9 @@ public class StringDecoder : MonoBehaviour {
                 Match match = pattern.Match(_string);
                 if (match.Success)
                 {
-                    //TODO: change this to true after fixing endless loop
                     matchesPossible = true;
-                    Debug.Log("Match found: " + match.Value + " at index : " + match.Index);
-                    string replacement_string = "";
-                    for (int i = 0; i < match.Value.Length; i++ )
-                    {
-                        
-                        StringBuilder sb = new StringBuilder(_string);
-                        if (sb[match.Index + i] == pattern.ToString()[i]) 
-                        {
-                            sb[match.Index + i] = '@';
-                            
-                        }
-                        replacement_string += sb[match.Index + i].ToString();
-                    }
+                    string replacement_string = ReplaceCharsInMatch(_string, match, pattern);
                     _string = pattern.Replace(_string, replacement_string, 1);
-                    Debug.Log("Formatted string : " + _string);
 
                 } else
                 {
@@ -59,5 +45,23 @@ public class StringDecoder : MonoBehaviour {
 
         }
 
+    }
+
+    private string ReplaceCharsInMatch (string original_string, Match match, Regex pattern)
+    {
+        string replacement_string = "";
+        StringBuilder sb = new StringBuilder(original_string);
+        for (int i = 0; i < match.Value.Length; i++)
+        {
+            char current_string_char = sb[match.Index + i];
+            char current_pattern_char = pattern.ToString()[i];
+            if (current_string_char == current_pattern_char)
+            {
+                current_string_char = '@'; //replace current char to disable detecting it as a match again
+
+            }
+            replacement_string += current_string_char.ToString();
+        }
+        return replacement_string;
     }
 }
