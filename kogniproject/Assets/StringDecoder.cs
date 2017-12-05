@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Text;
-using UnityEditor;
 
 public class StringDecoder : MonoBehaviour {
 
