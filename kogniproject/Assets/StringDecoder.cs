@@ -36,7 +36,7 @@ public class StringDecoder : MonoBehaviour {
                 Match match = pattern.Match(_string);
                 if (match.Success)
                 {
-                    unitsToSpawn.Add(units[ArrayUtility.IndexOf(codes, pattern.ToString())]);
+                    unitsToSpawn.Add(units[System.Array.IndexOf(codes, pattern.ToString())]);
                     matchesPossible = true;
                     string replacement_string = ReplaceCharsInMatch(_string, match, pattern);
                     _string = pattern.Replace(_string, replacement_string, 1);
