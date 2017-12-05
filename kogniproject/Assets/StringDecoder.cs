@@ -14,21 +14,13 @@ public class StringDecoder : MonoBehaviour {
 
     public List<Unit> unitsToSpawn = new List<Unit>();
 
-    //[] {
-       //new Regex(@knightCode, RegexOptions.IgnoreCase),
-       //new Regex(@"oo......bb", RegexOptions.IgnoreCase)
-//};
-    
-
-	// Use this for initialization
 	void Start () {
         foreach (string code in codes)
         {
-            patterns.Add(new Regex(@code, RegexOptions.IgnoreCase));
+            patterns.Add(new Regex(code, RegexOptions.IgnoreCase));
         }
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}
@@ -44,7 +36,6 @@ public class StringDecoder : MonoBehaviour {
                 Match match = pattern.Match(_string);
                 if (match.Success)
                 {
-                    Unit _testUnit = units[ArrayUtility.IndexOf(codes, pattern.ToString())];
                     unitsToSpawn.Add(units[ArrayUtility.IndexOf(codes, pattern.ToString())]);
                     matchesPossible = true;
                     string replacement_string = ReplaceCharsInMatch(_string, match, pattern);

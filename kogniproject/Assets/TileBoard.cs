@@ -76,6 +76,7 @@ public class TileBoard : MonoBehaviour {
         if (Input.GetKeyDown(enterKey))
         {
             spawner.spawnUnits(GenerateString());
+            Reset();
         }
 
         
