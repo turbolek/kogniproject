@@ -5,9 +5,23 @@ using UnityEngine;
 public class TileBoard : MonoBehaviour {
 
     public Tile[] tiles;
-    public Tile selectedTile;
-    private int selectedTileIndex;
+    public Tile highlightedTile;
+    private int highlightedTileIndex;
     private Player owner;
+    private bool tileSelected = false;
+
+    private string upKey;
+    private string downKey;
+    private string rightKey;
+    private string leftKey;
+    private string selectKey;
+    private string enterKey;
+
+    void Awake()
+    {       
+        owner = GetOwner();
+        SetControlKeys(owner);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -18,29 +32,33 @@ public class TileBoard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("up"))
+        if (Input.GetKeyDown(upKey))
         {
-            DeselectTile(tiles[selectedTileIndex]);
-            selectedTileIndex -= 6;
-            SelectTileAtIndex(selectedTileIndex);
+            DeselectTile(tiles[highlightedTileIndex]);
+            highlightedTileIndex -= 6;
+            SelectTileAtIndex(highlightedTileIndex);
         }
-        if (Input.GetKeyDown("down"))
+        if (Input.GetKeyDown(downKey))
         {
-            DeselectTile(tiles[selectedTileIndex]);
-            selectedTileIndex += 6;
-            SelectTileAtIndex(selectedTileIndex);
+            DeselectTile(tiles[highlightedTileIndex]);
+            highlightedTileIndex += 6;
+            SelectTileAtIndex(highlightedTileIndex);
         }
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKeyDown(rightKey))
         {
-            DeselectTile(tiles[selectedTileIndex]);
-            selectedTileIndex += 1;
-            SelectTileAtIndex(selectedTileIndex);
+            DeselectTile(tiles[highlightedTileIndex]);
+            highlightedTileIndex += 1;
+            SelectTileAtIndex(highlightedTileIndex);
         }
-        if (Input.GetKeyDown("left"))
+        if (Input.GetKeyDown(leftKey))
         {
-            DeselectTile(tiles[selectedTileIndex]);
-            selectedTileIndex -= 1;
-            SelectTileAtIndex(selectedTileIndex);
+            DeselectTile(tiles[highlightedTileIndex]);
+            highlightedTileIndex -= 1;
+            SelectTileAtIndex(highlightedTileIndex);
+        }
+        if (Input.GetKeyDown(selectKey))
+        {
+            tileSelected = !tileSelected;
         }
 
         
@@ -72,11 +90,38 @@ public class TileBoard : MonoBehaviour {
 
     private void SelectTileAtIndex(int index)
     {
-        selectedTileIndex = Mathf.Clamp(selectedTileIndex, 0, 35);
+        highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
         
-        selectedTile = tiles[index];
-        selectedTileIndex = index;
-        HighlightTile(tiles[selectedTileIndex]);
+        highlightedTile = tiles[index];
+        highlightedTileIndex = index;
+        HighlightTile(tiles[highlightedTileIndex]);
+    }
+
+    private Player GetOwner()
+    {
+        owner = GetComponentInParent<Player>();
+        return owner;
+    }
+
+    private void SetControlKeys (Player owner)
+    {
+        if (owner == GameObject.Find("Player 1").GetComponent<Player>() )
+        {
+            upKey = "w";
+            downKey = "s";
+            leftKey = "a";
+            rightKey = "d";
+            selectKey = "space";
+            enterKey = "e";
+        } else
+        {
+            upKey = "up";
+            downKey = "down";
+            leftKey = "left";
+            rightKey = "right";
+            selectKey = "shift";
+            enterKey = "enter";
+        }
     }
 
 
