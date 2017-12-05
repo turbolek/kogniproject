@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 
     public int layerIndex;
     [Header ("1 => right, -1 => left")]
-    public int direction;
+    public float direction;
     [HideInInspector]
     public Vector2 directionVector;
 

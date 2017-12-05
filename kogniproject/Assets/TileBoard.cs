@@ -17,9 +17,12 @@ public class TileBoard : MonoBehaviour {
     private string selectKey;
     private string enterKey;
 
+    private Spawner spawner;
+
     void Awake()
     {       
         owner = GetOwner();
+        spawner = GetSpawner();
         SetControlKeys(owner);
     }
 
@@ -32,33 +35,47 @@ public class TileBoard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(upKey))
+        if (Input.GetKeyDown(upKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(leftKey) || Input.GetKeyDown(rightKey))
         {
-            DeselectTile(tiles[highlightedTileIndex]);
-            highlightedTileIndex -= 6;
-            SelectTileAtIndex(highlightedTileIndex);
+            int previousHighlightedTileIndex = highlightedTileIndex;
+            if (Input.GetKeyDown(upKey))
+            {
+                
+                highlightedTileIndex -= 6;
+                SelectTileAtIndex(highlightedTileIndex);
+            }
+            if (Input.GetKeyDown(downKey))
+            {
+                highlightedTileIndex += 6;
+            }
+            if (Input.GetKeyDown(rightKey))
+            {
+                highlightedTileIndex += 1;
+            }
+            if (Input.GetKeyDown(leftKey))
+            {
+                highlightedTileIndex -= 1;                
+            }
+            highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
+            if (highlightedTileIndex != previousHighlightedTileIndex)
+            {
+                DeselectTile(tiles[previousHighlightedTileIndex]);
+                SelectTileAtIndex(highlightedTileIndex);
+                if (tileSelected)
+                {
+                    SwapTiles(previousHighlightedTileIndex, highlightedTileIndex);
+                }
+            }
+            
         }
-        if (Input.GetKeyDown(downKey))
-        {
-            DeselectTile(tiles[highlightedTileIndex]);
-            highlightedTileIndex += 6;
-            SelectTileAtIndex(highlightedTileIndex);
-        }
-        if (Input.GetKeyDown(rightKey))
-        {
-            DeselectTile(tiles[highlightedTileIndex]);
-            highlightedTileIndex += 1;
-            SelectTileAtIndex(highlightedTileIndex);
-        }
-        if (Input.GetKeyDown(leftKey))
-        {
-            DeselectTile(tiles[highlightedTileIndex]);
-            highlightedTileIndex -= 1;
-            SelectTileAtIndex(highlightedTileIndex);
-        }
+
         if (Input.GetKeyDown(selectKey))
         {
             tileSelected = !tileSelected;
+        }
+        if (Input.GetKeyDown(enterKey))
+        {
+            spawner.spawnUnits(GenerateString());
         }
 
         
@@ -78,19 +95,19 @@ public class TileBoard : MonoBehaviour {
 
     private void HighlightTile(Tile tile)
     {
-        tile.transform.localScale += new Vector3(.25f, .25f, .25f);
+        tile.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
         tile.transform.Translate(0, 0, -.1f);
     }
 
     private void DeselectTile(Tile tile)
     {
-        tile.transform.localScale -= new Vector3(.25f, .25f, .25f);
+        tile.transform.localScale = new Vector3(1f, 1f, 1f);
         tile.transform.Translate(0, 0, .1f);
     }
 
     private void SelectTileAtIndex(int index)
     {
-        highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
+        
         
         highlightedTile = tiles[index];
         highlightedTileIndex = index;
@@ -119,10 +136,36 @@ public class TileBoard : MonoBehaviour {
             downKey = "down";
             leftKey = "left";
             rightKey = "right";
-            selectKey = "shift";
+            selectKey = "right shift";
             enterKey = "enter";
         }
     }
 
+    private void SwapTiles (int tileIndex_1, int tileIndex_2)
+    {
+        char tempChar = tiles[tileIndex_1].codeChar;
+        Color32 tempColor = tiles[tileIndex_1].GetComponent<SpriteRenderer>().color;
 
+        tiles[tileIndex_1].codeChar = tiles[tileIndex_2].codeChar;
+        tiles[tileIndex_1].GetComponent<SpriteRenderer>().color = tiles[tileIndex_2].GetComponent<SpriteRenderer>().color;
+        tiles[tileIndex_2].codeChar = tempChar;
+        tiles[tileIndex_2].GetComponent<SpriteRenderer>().color = tempColor;
+        tileSelected = false;
+    }
+
+    private Spawner GetSpawner()
+    {
+        Spawner _spawner = owner.GetComponentInChildren<Castle>().GetComponentInChildren<Spawner>();
+        return _spawner;
+    }
+
+    public string GenerateString()
+    {
+        string output = "";
+        foreach (Tile tile in tiles)
+        {
+            output += tile.codeChar;
+        }
+        return output;
+    }
 }

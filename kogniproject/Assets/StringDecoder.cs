@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Text;
+using UnityEditor;
 
 public class StringDecoder : MonoBehaviour {
 
+    public string[] codes;
+    public Unit[] units;
 
-    Regex[] patterns = new Regex[] {
-       new Regex(@"gg......rr", RegexOptions.IgnoreCase),
-       new Regex(@"oo......bb", RegexOptions.IgnoreCase)
-};
+    List<Regex> patterns = new List<Regex>();
+
+    public List<Unit> unitsToSpawn = new List<Unit>();
+
+    //[] {
+       //new Regex(@knightCode, RegexOptions.IgnoreCase),
+       //new Regex(@"oo......bb", RegexOptions.IgnoreCase)
+//};
     
 
 	// Use this for initialization
 	void Start () {
-        CheckStringForMatches("xxgggxxxxxrrrxx");
+        foreach (string code in codes)
+        {
+            patterns.Add(new Regex(@code, RegexOptions.IgnoreCase));
+        }
 	}
 	
 	// Update is called once per frame
@@ -23,8 +33,9 @@ public class StringDecoder : MonoBehaviour {
 		
 	}
 
-    public void CheckStringForMatches (string _string)
+    public List<Unit> GetUnitsToSpawn (string _string)
     {
+        List<Unit> unitsToSpawn = new List<Unit>();
         bool matchesPossible = true;
         foreach (Regex pattern in patterns)
         {
@@ -33,6 +44,8 @@ public class StringDecoder : MonoBehaviour {
                 Match match = pattern.Match(_string);
                 if (match.Success)
                 {
+                    Unit _testUnit = units[ArrayUtility.IndexOf(codes, pattern.ToString())];
+                    unitsToSpawn.Add(units[ArrayUtility.IndexOf(codes, pattern.ToString())]);
                     matchesPossible = true;
                     string replacement_string = ReplaceCharsInMatch(_string, match, pattern);
                     _string = pattern.Replace(_string, replacement_string, 1);
@@ -44,6 +57,7 @@ public class StringDecoder : MonoBehaviour {
             }
 
         }
+        return unitsToSpawn;
 
     }
 
@@ -57,7 +71,7 @@ public class StringDecoder : MonoBehaviour {
             char current_pattern_char = pattern.ToString()[i];
             if (current_string_char == current_pattern_char)
             {
-                current_string_char = '@'; //replace current char to disable detecting it as a match again
+                current_string_char = '$'; //replace current char to disable detecting it as a match again
 
             }
             replacement_string += current_string_char.ToString();

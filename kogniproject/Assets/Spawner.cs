@@ -5,10 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public Player owner;
+    StringDecoder decoder;
 
 	// Use this for initialization
 	void Start () {
-		
+        decoder = FindObjectOfType<StringDecoder>();
 	}
 	
 	// Update is called once per frame
@@ -16,10 +17,20 @@ public class Spawner : MonoBehaviour {
 		
 	}
 
-    public void spawnUnit(Transform unitPrefab)
+    public void spawnUnits (string _string)
     {
-        Transform unitTransform = Instantiate(unitPrefab, gameObject.transform.position, Quaternion.identity);
-        unitTransform.parent = gameObject.transform;
-        unitTransform.GetComponent<Unit>().owner = owner;
+        List<Unit> units = decoder.GetUnitsToSpawn(_string);
+        foreach (Unit unit in units)
+        {
+            spawnUnit(unit);
+        }
+    }
+
+    public void spawnUnit(Unit unit)
+    {
+        Unit _unit = Instantiate(unit, gameObject.transform.position, Quaternion.identity);
+        _unit.transform.parent = gameObject.transform;
+        _unit.owner = owner;
+        _unit.transform.localScale = new Vector3(owner.direction, 1f, 1f);
     }
 }
