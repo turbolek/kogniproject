@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140126954187762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4083312, y: -2.369688, z: 0}
+  m_LocalPosition: {x: 2.3321314, y: -3.128436, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224600012089590718}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
 --- !u!114 &114688002991331358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,11 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f9b4d5f9573d247b110012796cecce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 15
+  healthPoints: 11
   healthBar: {fileID: 114146762316416018}
   owner: {fileID: 0}
   speed: 1
-  attackPoints: 2
+  attackPoints: 5
   cooldown: 3
 --- !u!114 &114753883817149420
 MonoBehaviour:

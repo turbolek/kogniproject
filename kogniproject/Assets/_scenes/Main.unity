@@ -702,8 +702,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   codes:
   - rr....yy
+  - gg....ww
   units:
   - {fileID: 114688002991331358, guid: 98c64552d110da94daaac54734f30f76, type: 2}
+  - {fileID: 114651695316206236, guid: 406db1623be9ec64f80a08aea895ae55, type: 2}
   unitsToSpawn: []
 --- !u!1001 &432855311
 Prefab:

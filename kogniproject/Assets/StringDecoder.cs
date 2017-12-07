@@ -30,6 +30,7 @@ public class StringDecoder : MonoBehaviour {
         bool matchesPossible = true;
         foreach (Regex pattern in patterns)
         {
+            matchesPossible = true;
             while (matchesPossible)
             {
                 Match match = pattern.Match(_string);
