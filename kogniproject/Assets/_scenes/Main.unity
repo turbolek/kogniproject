@@ -1678,14 +1678,6 @@ Prefab:
       propertyPath: m_Name
       value: TileBoard1
       objectReference: {fileID: 0}
-    - target: {fileID: 4692081303878424, guid: b964e54f2df010c43b570f2e52cb6a22, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4692081303878424, guid: b964e54f2df010c43b570f2e52cb6a22, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b964e54f2df010c43b570f2e52cb6a22, type: 2}
   m_IsPrefabParent: 0

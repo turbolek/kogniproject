@@ -22,16 +22,33 @@ public class Unit : Entity
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (!target)
+        switch (state)
         {
-            gameObject.layer = owner.layerIndex;
-            Move();
-        } else 
+            case "idle":
+                Idle();
+                break;
+            case "engaged":
+                Engaged();
+                break;
+            default:
+                break;
+        }     
+    }
+
+    protected virtual void Idle()
+    {
+        gameObject.layer = owner.layerIndex;
+        Move();
+    }
+
+    protected virtual void Engaged()
+    {   if (!target)
         {
-            if (target.GetComponent<Unit>()) gameObject.layer = 8;
-            Attack(target);
+            state = "idle";
+            return;
         }
-        
+        if (target.GetComponent<Unit>()) gameObject.layer = 8;
+        Attack(target);
     }
 
     protected virtual void Move()
@@ -57,6 +74,7 @@ public class Unit : Entity
         if (colliderEntity.owner != owner)
         {
             target = colliderEntity;
+            state = "engaged";
         }
     }
 }
