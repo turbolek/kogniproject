@@ -6,6 +6,7 @@ public class TileBoard : MonoBehaviour {
 
     public Tile[] tiles;
     public Tile highlightedTile;
+    public GameObject selector; 
     private int highlightedTileIndex;
     private Player owner;
     private bool tileSelected = false;
@@ -57,6 +58,9 @@ public class TileBoard : MonoBehaviour {
                 highlightedTileIndex -= 1;                
             }
             highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
+
+            Tile _highlightedTile = tiles[highlightedTileIndex];
+            selector.transform.position.Set(_highlightedTile.transform.position.x, _highlightedTile.transform.position.y, 0.05f);
             if (highlightedTileIndex != previousHighlightedTileIndex)
             {
                 DeselectTile(tiles[previousHighlightedTileIndex]);

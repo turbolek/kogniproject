@@ -4,30 +4,7 @@ using UnityEngine;
 
 public class MeleeUnit : Unit {
 
-    [SerializeField]
-    private int attackPoints;
-    private Unit thisUnit;
-    [SerializeField]
-    private float cooldown;
-    private float timeSinceLastAttack = 0;
-
-
-	// Use this for initialization
-	protected override void Start () {
-        base.Start();
-        thisUnit = GetComponent<Unit>();
-	}
-	
-	// Update is called once per frame
-	protected override void Update () {
-        base.Update();
-		if (target)
-        {
-            Attack(target);
-        }
-	}
-
-    private void Attack (Entity _target)
+    protected override void Attack (Entity _target)
     {
         if (_target)
         {

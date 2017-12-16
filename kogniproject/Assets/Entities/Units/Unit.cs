@@ -6,6 +6,12 @@ public class Unit : Entity
 {
     public float speed;
     protected Entity target = null;
+    [SerializeField]
+    protected int attackPoints;
+    [SerializeField]
+    protected float cooldown;
+    protected float timeSinceLastAttack = 0;
+    protected string state = "idle";
 
     // Use this for initialization
     protected override void Start()
@@ -20,17 +26,22 @@ public class Unit : Entity
         {
             gameObject.layer = owner.layerIndex;
             Move();
-        } else if (target.GetComponent<Unit>())
+        } else 
         {
-            gameObject.layer = 8;
+            if (target.GetComponent<Unit>()) gameObject.layer = 8;
+            Attack(target);
         }
         
     }
 
-    private void Move()
+    protected virtual void Move()
     {
         Vector2 distance = owner.directionVector * speed * Time.deltaTime;
         gameObject.transform.Translate(distance);
+    }
+
+    protected virtual void Attack(Entity target)
+    {
 
     }
 
@@ -47,7 +58,5 @@ public class Unit : Entity
         {
             target = colliderEntity;
         }
-        Debug.Log("Target: " + target.gameObject);
-       
     }
 }
