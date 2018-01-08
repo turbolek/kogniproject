@@ -38,6 +38,9 @@ public class DistanceUnit : Unit {
         {
             Projectile _projectile = Instantiate(projectile, transform.position, Quaternion.identity);
             _projectile.owner = owner;
+            _projectile.target = target;
+            _projectile.attackPoints = attackPoints;
+            _projectile.gameObject.layer = owner.layerIndex;
             timeSinceLastAttack = 0;
         }
         else
