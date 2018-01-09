@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50989409756665030}
   - component: {fileID: 114688002991331358}
   m_Layer: 0
-  m_Name: _knight
+  m_Name: _knight2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140126954187762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1396918, y: -3.2398205, z: 0}
+  m_LocalPosition: {x: 0.08544052, y: -3.206613, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224600012089590718}
@@ -281,7 +281,7 @@ SpriteRenderer:
   m_SortingLayerID: -55236273
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1df2ed2c93cf86e4b8e17b844fa8f655, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 437642ac6523a47438f51742ab77efc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

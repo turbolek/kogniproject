@@ -574,6 +574,11 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1091296565
       objectReference: {fileID: 0}
+    - target: {fileID: 114106709371260820, guid: bc1e52b33318701479e4ddea2b91576e,
+        type: 2}
+      propertyPath: healthPoints
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc1e52b33318701479e4ddea2b91576e, type: 2}
   m_IsPrefabParent: 0
@@ -789,17 +794,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   codes:
-  - yy....rr
-  - gg....ww
-  - g.....ww....g
-  - pbl...bl....lp
-  - wr....wr
+  - ww....rr
+  - bb....ww
+  - wp....wp
+  - gw....gw
+  - gyg...ryr...ryr
+  - pbp...yyy...bbb
+  - pyp...yry...prp
+  - ygb...gyg...bgy
+  - rrrr..prrp..bllb..llll
+  - rllr..gllg..bbbb..bllb
+  - bggb..lppl..lppl..lppl
+  - glll..gprl..grpl..gggl
   units:
   - {fileID: 114688002991331358, guid: 98c64552d110da94daaac54734f30f76, type: 2}
-  - {fileID: 114651695316206236, guid: 406db1623be9ec64f80a08aea895ae55, type: 2}
+  - {fileID: 114688002991331358, guid: 5ddb10d030eb1c240800d5b175844cd8, type: 2}
   - {fileID: 114647543122742938, guid: 31aa38474426a0c4bae9eb2ac783e92e, type: 2}
-  - {fileID: 114651695316206236, guid: 4ea1d3063789c884986474dc0770201a, type: 2}
-  - {fileID: 114688002991331358, guid: 34dae54561e9d724b96381d95b85dea7, type: 2}
+  - {fileID: 114688002991331358, guid: 7558bea180a92d549abef2b329c05510, type: 2}
+  - {fileID: 114688002991331358, guid: 8ecf9352d563b2e4396b2f6ba17f32eb, type: 2}
+  - {fileID: 114688002991331358, guid: 3fc276c3e7f9d374b8557ea79714b90a, type: 2}
+  - {fileID: 114647543122742938, guid: bc252f92f5145f440b187022f357f017, type: 2}
+  - {fileID: 114688002991331358, guid: fa812f4572e40544c9147d83a35d00bb, type: 2}
+  - {fileID: 114688002991331358, guid: 4fa8e0c5f8413bc44beed11ced1c7a55, type: 2}
+  - {fileID: 114688002991331358, guid: 8d71bcdab1258b04e96e3f984cf4bbaf, type: 2}
+  - {fileID: 114647543122742938, guid: 0bfe268d932c5da408e4a03e441ab086, type: 2}
+  - {fileID: 114688002991331358, guid: 1c365a182a5256b449cb9e2b40af4dcc, type: 2}
   unitsToSpawn: []
 --- !u!1001 &432855311
 Prefab:
@@ -1481,6 +1500,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayerID
       value: 1091296565
+      objectReference: {fileID: 0}
+    - target: {fileID: 114106709371260820, guid: bc1e52b33318701479e4ddea2b91576e,
+        type: 2}
+      propertyPath: healthPoints
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc1e52b33318701479e4ddea2b91576e, type: 2}
