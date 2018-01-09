@@ -25,9 +25,11 @@ public class Unit : Entity
         switch (state)
         {
             case "idle":
+                Debug.Log("Idle");
                 Idle();
                 break;
             case "engaged":
+                Debug.Log("Engaged");
                 Engaged();
                 break;
             default:
@@ -42,7 +44,7 @@ public class Unit : Entity
     }
 
     protected virtual void Engaged()
-    {   if (!target)
+    {   if (target == null)
         {
             state = "idle";
             return;

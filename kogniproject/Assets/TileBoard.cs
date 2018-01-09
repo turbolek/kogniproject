@@ -155,7 +155,7 @@ public class TileBoard : MonoBehaviour {
         tiles[tileIndex_1].GetComponent<SpriteRenderer>().color = tiles[tileIndex_2].GetComponent<SpriteRenderer>().color;
         tiles[tileIndex_2].codeChar = tempChar;
         tiles[tileIndex_2].GetComponent<SpriteRenderer>().color = tempColor;
-        tileSelected = false;
+        //tileSelected = false;
     }
 
     private Spawner GetSpawner()

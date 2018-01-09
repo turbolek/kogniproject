@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
         float velocityX = Mathf.Cos(angle) * speed;
         float velocityY = Mathf.Sqrt(speed * speed - velocityX * velocityX);
         rb.velocity = new Vector2(owner.directionVector.x * velocityX, velocityY);
-
+        gameObject.layer = owner.layerIndex + 2;
     }
 	
 	// Update is called once per frame

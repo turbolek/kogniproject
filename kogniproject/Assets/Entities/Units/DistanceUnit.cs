@@ -13,6 +13,7 @@ public class DistanceUnit : Unit {
         switch (state)
         {
             case "target in range":
+                Debug.Log("Target in range");
                 Shoot();
                 break;
             default:
@@ -22,14 +23,22 @@ public class DistanceUnit : Unit {
 
     void OnTriggerEnter2D(Collider2D _collider)
     {
-        Entity colliderEntity = _collider.gameObject.GetComponent<Entity>();
-        state = "target in range";
-        target = colliderEntity;
+        if (!_collider.isTrigger)
+        {
+            Entity colliderEntity = _collider.gameObject.GetComponent<Entity>();
+            if (colliderEntity != null)
+            {
+                state = "target in range";
+                target = colliderEntity;
+            }
+
+        }
+
     }
 
     private void Shoot()
     {
-        if (!target)
+        if (target == null)
         {
             state = "idle";
             return;
