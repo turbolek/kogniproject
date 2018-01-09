@@ -30,7 +30,6 @@ public class TileBoard : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Reset();
-        SelectTileAtIndex(0);
 
 	}
 	
@@ -43,7 +42,6 @@ public class TileBoard : MonoBehaviour {
             {
                 
                 highlightedTileIndex -= 6;
-                SelectTileAtIndex(highlightedTileIndex);
             }
             if (Input.GetKeyDown(downKey))
             {
@@ -57,6 +55,7 @@ public class TileBoard : MonoBehaviour {
             {
                 highlightedTileIndex -= 1;                
             }
+            selector.transform.position = new Vector3(tiles[highlightedTileIndex].transform.position.x, tiles[highlightedTileIndex].transform.position.y, -0.05f);
             highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
 
             Tile _highlightedTile = tiles[highlightedTileIndex];
@@ -64,9 +63,10 @@ public class TileBoard : MonoBehaviour {
             if (highlightedTileIndex != previousHighlightedTileIndex)
             {
                 DeselectTile(tiles[previousHighlightedTileIndex]);
-                SelectTileAtIndex(highlightedTileIndex);
+                
                 if (tileSelected)
                 {
+                    SelectTileAtIndex(highlightedTileIndex);
                     SwapTiles(previousHighlightedTileIndex, highlightedTileIndex);
                 }
             }
@@ -76,6 +76,13 @@ public class TileBoard : MonoBehaviour {
         if (Input.GetKeyDown(selectKey))
         {
             tileSelected = !tileSelected;
+            if (tileSelected)
+            {
+                HighlightTile(tiles[highlightedTileIndex]);
+            } else
+            {
+                DeselectTile(tiles[highlightedTileIndex]);
+            }
         }
         if (Input.GetKeyDown(enterKey))
         {
@@ -101,13 +108,13 @@ public class TileBoard : MonoBehaviour {
     private void HighlightTile(Tile tile)
     {
         tile.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
-        tile.transform.Translate(0, 0, -.1f);
+        tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, -0.1f);
     }
 
     private void DeselectTile(Tile tile)
     {
         tile.transform.localScale = new Vector3(1f, 1f, 1f);
-        tile.transform.Translate(0, 0, .1f);
+        tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, 0f);
     }
 
     private void SelectTileAtIndex(int index)
