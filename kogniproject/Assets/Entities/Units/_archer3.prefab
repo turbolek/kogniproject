@@ -245,8 +245,9 @@ MonoBehaviour:
   healthPoints: 5
   healthBar: {fileID: 114112711395256064}
   owner: {fileID: 0}
+  type: distance
   speed: 1
-  attackPoints: 1
+  basicAttackPoints: 20
   cooldown: 2
   projectile: {fileID: 114578902663681498, guid: 1ca412e0fc0aa8f4c89738816d8e406f,
     type: 2}

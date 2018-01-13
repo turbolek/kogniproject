@@ -198,8 +198,9 @@ MonoBehaviour:
   healthPoints: 11
   healthBar: {fileID: 114146762316416018}
   owner: {fileID: 0}
+  type: infantry
   speed: 1
-  attackPoints: 5
+  basicAttackPoints: 2
   cooldown: 3
 --- !u!114 &114753883817149420
 MonoBehaviour:

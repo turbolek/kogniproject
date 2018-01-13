@@ -9,8 +9,9 @@ public class Entity : MonoBehaviour {
     protected int healthPoints;
     private int currentHealtPoints;
     public Image healthBar;
-    //TODO get player object instead of bool
     public Player owner;
+    [SerializeField]
+    public string type = "default";
 
     protected virtual void Start()
     {

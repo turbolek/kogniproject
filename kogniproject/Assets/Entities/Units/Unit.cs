@@ -6,8 +6,9 @@ public class Unit : Entity
 {
     public float speed;
     protected Entity target = null;
-    [SerializeField]
     protected int attackPoints;
+    [SerializeField]
+    protected int basicAttackPoints; 
     [SerializeField]
     protected float cooldown;
     protected float timeSinceLastAttack = 0;
@@ -61,7 +62,7 @@ public class Unit : Entity
 
     protected virtual void Attack(Entity target)
     {
-
+        GettAttackPointsMultiplier(type, target.type);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -78,5 +79,39 @@ public class Unit : Entity
             target = colliderEntity;
             state = "engaged";
         }
+
+        GettAttackPointsMultiplier(type, target.type);
+    }
+
+    protected void GettAttackPointsMultiplier (string attackerType, string targetType)
+    {
+        float buffMultiplier = 3f;
+        float debuffMultiplier = .33f;
+        switch (attackerType)
+        {
+            case "distance":
+                if (targetType == "polearms") attackPoints = Mathf.RoundToInt(basicAttackPoints * buffMultiplier);
+                else if (targetType == "infantry") attackPoints = Mathf.RoundToInt((basicAttackPoints + 1) * debuffMultiplier);
+                else attackPoints = basicAttackPoints;
+                break;
+            case "infantry":
+                if (targetType == "distance") attackPoints = Mathf.RoundToInt(basicAttackPoints * buffMultiplier);
+                else if (targetType == "cavalry") attackPoints = Mathf.RoundToInt((basicAttackPoints + 1) * debuffMultiplier);
+                else attackPoints = basicAttackPoints;
+                break;
+            case "cavalry":
+                if (targetType == "infantry") attackPoints = Mathf.RoundToInt(basicAttackPoints * buffMultiplier);
+                else if (targetType == "polearms") attackPoints = Mathf.RoundToInt((basicAttackPoints + 1) * debuffMultiplier);
+                else attackPoints = basicAttackPoints;
+                break;
+            case "polearms":
+                if (targetType == "cavalry") attackPoints = Mathf.RoundToInt(basicAttackPoints * buffMultiplier);
+                else if (targetType == "distance") attackPoints = Mathf.RoundToInt((basicAttackPoints + 1) * debuffMultiplier);
+                else attackPoints = basicAttackPoints;
+                break;
+            default:
+                attackPoints = basicAttackPoints;
+                break;
+        } 
     }
 }

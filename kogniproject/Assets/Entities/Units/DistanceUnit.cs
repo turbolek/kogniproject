@@ -33,7 +33,7 @@ public class DistanceUnit : Unit {
             }
 
         }
-
+        GettAttackPointsMultiplier(type, target.type);
     }
 
     private void Shoot()
