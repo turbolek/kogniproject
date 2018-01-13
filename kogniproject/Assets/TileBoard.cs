@@ -7,7 +7,8 @@ public class TileBoard : MonoBehaviour {
     public Tile[] tiles;
     public Tile highlightedTile;
     public GameObject selector; 
-    private int highlightedTileIndex;
+    private int highlightedTileIndex = 0;
+    private int tileIndexAfterMove = 0;
     private Player owner;
     private bool tileSelected = false;
 
@@ -40,20 +41,23 @@ public class TileBoard : MonoBehaviour {
             int previousHighlightedTileIndex = highlightedTileIndex;
             if (Input.GetKeyDown(upKey))
             {
-                
-                highlightedTileIndex -= 6;
+                tileIndexAfterMove = highlightedTileIndex - 6;
+                if (tileIndexAfterMove >= 0) highlightedTileIndex -= 6;               
             }
             if (Input.GetKeyDown(downKey))
             {
-                highlightedTileIndex += 6;
+                tileIndexAfterMove = highlightedTileIndex + 6;
+                if (tileIndexAfterMove <= 35) highlightedTileIndex += 6;
             }
             if (Input.GetKeyDown(rightKey))
             {
-                highlightedTileIndex += 1;
+                tileIndexAfterMove = highlightedTileIndex + 1;
+                if (tileIndexAfterMove/6 == highlightedTileIndex/6 ) highlightedTileIndex += 1;
             }
             if (Input.GetKeyDown(leftKey))
             {
-                highlightedTileIndex -= 1;                
+                tileIndexAfterMove = highlightedTileIndex - 1;
+                if (tileIndexAfterMove / 6 == highlightedTileIndex / 6) highlightedTileIndex -= 1;
             }
             selector.transform.position = new Vector3(tiles[highlightedTileIndex].transform.position.x, tiles[highlightedTileIndex].transform.position.y, -0.05f);
             highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);
