@@ -36,6 +36,22 @@ public class DistanceUnit : Unit {
         GettAttackPointsMultiplier(type, target.type);
     }
 
+    //TODO: reduce redundancy
+    private void OnTriggerStay2D(Collider2D _collider)
+    {
+        if (!_collider.isTrigger)
+        {
+            Entity colliderEntity = _collider.gameObject.GetComponent<Entity>();
+            if (colliderEntity != null)
+            {
+                state = "target in range";
+                target = colliderEntity;
+            }
+
+        }
+        GettAttackPointsMultiplier(type, target.type);
+    }
+
     private void Shoot()
     {
         if (target == null)
