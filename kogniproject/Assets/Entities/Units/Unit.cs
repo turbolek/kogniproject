@@ -14,6 +14,8 @@ public class Unit : Entity
     protected float timeSinceLastAttack = 0;
     protected string state = "idle";
 
+    public Sprite portrait;
+
     // Use this for initialization
     protected override void Start()
     {

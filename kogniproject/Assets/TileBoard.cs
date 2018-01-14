@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class TileBoard : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class TileBoard : MonoBehaviour {
 
     private Spawner spawner;
 
+    private StringDecoder decoder;
+
     void Awake()
     {       
         owner = GetOwner();
@@ -30,6 +33,7 @@ public class TileBoard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        decoder = FindObjectOfType<StringDecoder>();
         Reset();
 
 	}
@@ -74,7 +78,7 @@ public class TileBoard : MonoBehaviour {
                     SwapTiles(previousHighlightedTileIndex, highlightedTileIndex);
                 }
             }
-            
+            DrawPortraits();
         }
 
         if (Input.GetKeyDown(selectKey))
@@ -90,7 +94,7 @@ public class TileBoard : MonoBehaviour {
         }
         if (Input.GetKeyDown(enterKey))
         {
-            spawner.spawnUnits(GenerateString());
+            spawner.spawnUnits(decoder.GetUnitsToSpawn(GenerateString()));
             Reset();
         }
 
@@ -100,13 +104,20 @@ public class TileBoard : MonoBehaviour {
 
     private void Reset()
     {
-        TileColor tileColor;
-        foreach (Tile tile in tiles)
+        int i = 0;
+        while (i == 0 || decoder.GetUnitsToSpawn(GenerateString()).Count != 0)
         {
-            tileColor = ColorSet.colors[Random.Range(0, ColorSet.colors.Count)];
-            tile.GetComponent<SpriteRenderer>().color = tileColor.color;
-            tile.codeChar = tileColor.codeChar;
+            TileColor tileColor;
+            foreach (Tile tile in tiles)
+            {
+                tileColor = ColorSet.colors[Random.Range(0, ColorSet.colors.Count)];
+                tile.GetComponent<SpriteRenderer>().color = tileColor.color;
+                tile.codeChar = tileColor.codeChar;
+                tile.transform.parent.Find("Portrait").GetComponent<SpriteRenderer>().enabled = false;
+            }
+            i++;
         }
+
     }
 
     private void HighlightTile(Tile tile)
@@ -183,5 +194,29 @@ public class TileBoard : MonoBehaviour {
             output += tile.codeChar;
         }
         return output;
+    }
+
+    private void DrawPortraits()
+    {
+        List<Unit> unitsToSpawn = decoder.GetUnitsToSpawn(GenerateString());
+        List<int> matchIndices = new List<int>();
+        foreach (Match match in decoder.matches)
+        {
+            matchIndices.Add(match.Index);
+        }
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            SpriteRenderer portraitSpriteRenderer = tiles[i].transform.parent.Find("Portrait").GetComponent<SpriteRenderer>();
+            if (matchIndices.Contains(i))
+            {
+                int matchIndex = matchIndices.IndexOf(i);
+                portraitSpriteRenderer.enabled = true;
+                portraitSpriteRenderer.sprite = unitsToSpawn[matchIndex].portrait;
+            } else
+            {
+                portraitSpriteRenderer.enabled = false;
+            }
+
+        }
     }
 }

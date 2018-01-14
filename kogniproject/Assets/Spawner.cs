@@ -5,21 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
     public Player owner;
-    StringDecoder decoder;
 
-	// Use this for initialization
-	void Start () {
-        decoder = FindObjectOfType<StringDecoder>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void spawnUnits (string _string)
+    public void spawnUnits (List<Unit> units)
     {
-        List<Unit> units = decoder.GetUnitsToSpawn(_string);
         foreach (Unit unit in units)
         {
             StartCoroutine("spawnUnit", unit);

@@ -12,6 +12,7 @@ public class StringDecoder : MonoBehaviour {
     List<Regex> patterns = new List<Regex>();
 
     public List<Unit> unitsToSpawn = new List<Unit>();
+    public List<Match> matches = new List<Match>();
 
 	void Start () {
         foreach (string code in codes)
@@ -26,7 +27,8 @@ public class StringDecoder : MonoBehaviour {
 
     public List<Unit> GetUnitsToSpawn (string _string)
     {
-        List<Unit> unitsToSpawn = new List<Unit>();
+        unitsToSpawn = new List<Unit>();
+        matches = new List<Match>();
         bool matchesPossible = true;
         foreach (Regex pattern in patterns)
         {
@@ -40,6 +42,7 @@ public class StringDecoder : MonoBehaviour {
                     matchesPossible = true;
                     string replacement_string = ReplaceCharsInMatch(_string, match, pattern);
                     _string = pattern.Replace(_string, replacement_string, 1);
+                    matches.Add(match);
 
                 } else
                 {
