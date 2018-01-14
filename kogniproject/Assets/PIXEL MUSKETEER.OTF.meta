@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 6f8bf3331efbf184da9f29fae3da67f6
+timeCreated: 1515959242
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pixel Musketeer
+  fontNames:
+  - Pixel Musketeer
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
