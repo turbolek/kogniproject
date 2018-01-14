@@ -794,18 +794,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   codes:
-  - ww....rr
+  - rr....ww
   - bb....ww
-  - wp....wp
-  - gw....gw
-  - gyg...ryr...ryr
-  - pbp...yyy...bbb
-  - pyp...yry...prp
-  - ygb...gyg...bgy
-  - rrrr..prrp..bllb..llll
-  - rllr..gllg..bbbb..bllb
-  - bggb..lppl..lppl..lppl
-  - glll..gprl..grpl..gggl
+  - pp....ww
+  - gg....ww
+  - grg...rrr...yyy
+  - pbp...bbb...yyy
+  - rpr...ppp...yyy
+  - bgb...ggg...yyy
+  - bppb..rrrr..lrrl..llll
+  - rggr..bbbb..lbbl..llll
+  - gbbg..pppp..lppl..llll
+  - prrp..gggg..lggl..llll
   units:
   - {fileID: 114688002991331358, guid: 98c64552d110da94daaac54734f30f76, type: 2}
   - {fileID: 114688002991331358, guid: 5ddb10d030eb1c240800d5b175844cd8, type: 2}

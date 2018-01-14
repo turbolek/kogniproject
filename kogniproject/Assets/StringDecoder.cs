@@ -65,7 +65,7 @@ public class StringDecoder : MonoBehaviour {
             char current_pattern_char = pattern.ToString()[i];
             if (current_string_char == current_pattern_char)
             {
-                current_string_char = '$'; //replace current char to disable detecting it as a match again
+                current_string_char = '@'; //replace current char to disable detecting it as a match again
 
             }
             replacement_string += current_string_char.ToString();

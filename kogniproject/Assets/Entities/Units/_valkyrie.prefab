@@ -202,6 +202,7 @@ MonoBehaviour:
   speed: 1
   basicAttackPoints: 20
   cooldown: 3
+  portrait: {fileID: 21300000, guid: 2cc74c5866495824b9f984f577c7dd07, type: 3}
 --- !u!114 &114753883817149420
 MonoBehaviour:
   m_ObjectHideFlags: 1

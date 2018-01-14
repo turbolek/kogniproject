@@ -249,6 +249,7 @@ MonoBehaviour:
   speed: 1
   basicAttackPoints: 6
   cooldown: 2
+  portrait: {fileID: 21300000, guid: 667f5bd0e4c75b54fb5d600615ca7da3, type: 3}
   projectile: {fileID: 114578902663681498, guid: 1ca412e0fc0aa8f4c89738816d8e406f,
     type: 2}
 --- !u!114 &114865965569064944
