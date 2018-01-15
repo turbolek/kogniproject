@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f9b4d5f9573d247b110012796cecce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 11
+  healthPoints: 15
   healthBar: {fileID: 114146762316416018}
   owner: {fileID: 0}
   type: polearms

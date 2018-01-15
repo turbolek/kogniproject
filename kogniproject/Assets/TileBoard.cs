@@ -60,8 +60,12 @@ public class TileBoard : MonoBehaviour {
             }
             if (Input.GetKeyDown(leftKey))
             {
-                tileIndexAfterMove = highlightedTileIndex - 1;
-                if (tileIndexAfterMove / 6 == highlightedTileIndex / 6) highlightedTileIndex -= 1;
+                if (highlightedTileIndex > 0)
+                {
+                    tileIndexAfterMove = highlightedTileIndex - 1;
+                    if (tileIndexAfterMove / 6 == highlightedTileIndex / 6) highlightedTileIndex -= 1;
+                }
+
             }
             selector.transform.position = new Vector3(tiles[highlightedTileIndex].transform.position.x, tiles[highlightedTileIndex].transform.position.y, -0.05f);
             highlightedTileIndex = Mathf.Clamp(highlightedTileIndex, 0, 35);

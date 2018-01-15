@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2676b2e23d9ba24faae00f240a98cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 5
+  healthPoints: 15
   healthBar: {fileID: 114112711395256064}
   owner: {fileID: 0}
   type: distance

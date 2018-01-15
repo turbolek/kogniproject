@@ -85,6 +85,25 @@ public class Unit : Entity
         GettAttackPointsMultiplier(type, target.type);
     }
 
+    //TODO: reduce redundancy
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        //Check if collider is an entity (could be ground for example)
+        Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
+        if (colliderEntity == null)
+        {
+            return;
+        }
+
+        if (colliderEntity.owner != owner)
+        {
+            target = colliderEntity;
+            state = "engaged";
+        }
+
+        GettAttackPointsMultiplier(type, target.type);
+    }
+
     protected void GettAttackPointsMultiplier (string attackerType, string targetType)
     {
         float buffMultiplier = 3f;

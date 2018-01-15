@@ -30,6 +30,6 @@ public class GameManager : MonoBehaviour {
                 winner = player;
             }
         }
-        messageDisplay.DisplayMessage(winner + " wins!");
+        messageDisplay.DisplayMessage(winner.name + " wins!");
     }
 }
