@@ -10,7 +10,6 @@ public class Castle : Entity {
     protected override void Die()
     {
         base.Die();
-        Debug.Log(gameObject + " dies ");
         Destroy(gameObject);
         if (Destroyed != null) Destroyed(owner);
     }

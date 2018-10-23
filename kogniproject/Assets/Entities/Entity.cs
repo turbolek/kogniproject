@@ -17,14 +17,11 @@ public class Entity : MonoBehaviour {
     {
         gameObject.layer = owner.layerIndex;
         currentHealtPoints = healthPoints;
-        Debug.Log(gameObject + " current health: " + currentHealtPoints);
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log(gameObject + " takes damage ");
         currentHealtPoints -= damage;
-        Debug.Log(gameObject + " current health: " + currentHealtPoints);
         UpdateHealthBar();
         if (currentHealtPoints <= 0)
         {
@@ -34,8 +31,7 @@ public class Entity : MonoBehaviour {
 
     protected virtual void Die()
     {
-        Debug.Log(gameObject + " dies ");
-        Destroy(gameObject);
+       if (gameObject != null) Destroy(gameObject);
     }
 
     private void UpdateHealthBar()

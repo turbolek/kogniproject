@@ -36,7 +36,7 @@ public class StringDecoder : MonoBehaviour {
             while (matchesPossible)
             {
                 Match match = pattern.Match(_string);
-                if (match.Success)
+                if (match.Success && IsContinousMatch(match))
                 {
                     unitsToSpawn.Add(units[System.Array.IndexOf(codes, pattern.ToString())]);
                     matchesPossible = true;
@@ -71,5 +71,13 @@ public class StringDecoder : MonoBehaviour {
             replacement_string += current_string_char.ToString();
         }
         return replacement_string;
+    }
+
+    private bool IsContinousMatch (Match match)
+    {
+        int firstIndex = match.Index;
+        int lastIndex = match.Index + match.Length - 1;
+        bool result = firstIndex % 6 < lastIndex % 6;
+        return result;
     }
 }

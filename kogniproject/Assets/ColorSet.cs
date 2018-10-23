@@ -6,12 +6,12 @@ public class ColorSet{
 
     public static List<TileColor> colors = new List<TileColor>()
     {
-        {new TileColor(new Color32(255, 0, 0, 255), 'r') },
-        {new TileColor(new Color32(0, 112, 237, 255), 'b') },
-        {new TileColor(new Color32(81, 210, 3, 255), 'g') },
-        {new TileColor(new Color32(250, 218, 0, 255), 'l') },
-        {new TileColor(new Color32(191, 117, 0, 255), 'w') },
+        {new TileColor(new Color32(179, 57, 57, 255), 'r') },
+        {new TileColor(new Color32(52, 66, 112, 255), 'b') },
+        {new TileColor(new Color32(98, 155, 35, 255), 'g') },
+        {new TileColor(new Color32(255, 201, 14, 255), 'l') },
+        {new TileColor(new Color32(109, 70, 30, 255), 'w') },
         {new TileColor(new Color32(174, 174, 174, 255), 'y') },
-        {new TileColor(new Color32(210, 0, 203, 255), 'p') }
+        {new TileColor(new Color32(157, 81, 152, 255), 'p') }
     };
 }

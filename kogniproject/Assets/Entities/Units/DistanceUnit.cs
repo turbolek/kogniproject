@@ -13,7 +13,6 @@ public class DistanceUnit : Unit {
         switch (state)
         {
             case "target in range":
-                Debug.Log("Target in range");
                 Shoot();
                 break;
             default:

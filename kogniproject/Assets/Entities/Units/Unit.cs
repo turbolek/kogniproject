@@ -28,11 +28,9 @@ public class Unit : Entity
         switch (state)
         {
             case "idle":
-                Debug.Log("Idle");
                 Idle();
                 break;
             case "engaged":
-                Debug.Log("Engaged");
                 Engaged();
                 break;
             default:

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 
     void EndGame(Player loser)
     {
-        Player winner = new Player();
+        Player winner = null;
         foreach (Player player in players)
         {
             if (player != loser)

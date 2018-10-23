@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().name == "Menu")
             {
                 Application.Quit();
             } else

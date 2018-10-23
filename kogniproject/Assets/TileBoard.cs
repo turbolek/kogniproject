@@ -7,7 +7,8 @@ public class TileBoard : MonoBehaviour {
 
     public Tile[] tiles;
     public Tile highlightedTile;
-    public GameObject selector; 
+    public GameObject selector;
+    public GameObject hint;
     private int highlightedTileIndex = 0;
     private int tileIndexAfterMove = 0;
     private Player owner;
@@ -19,6 +20,7 @@ public class TileBoard : MonoBehaviour {
     private string leftKey;
     private string selectKey;
     private string enterKey;
+    private string hintKey;
 
     private Spawner spawner;
 
@@ -40,6 +42,10 @@ public class TileBoard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown(hintKey)) hint.GetComponent<SpriteRenderer>().enabled = true;
+        if (Input.GetKeyUp(hintKey)) hint.GetComponent<SpriteRenderer>().enabled = false;
+
         if (Input.GetKeyDown(upKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(leftKey) || Input.GetKeyDown(rightKey))
         {
             int previousHighlightedTileIndex = highlightedTileIndex;
@@ -108,20 +114,24 @@ public class TileBoard : MonoBehaviour {
 
     private void Reset()
     {
-        int i = 0;
-        while (i == 0 || decoder.GetUnitsToSpawn(GenerateString()).Count != 0)
+        SetTiles();
+        while (decoder.GetUnitsToSpawn(GenerateString()).Count != 0)
         {
-            TileColor tileColor;
-            foreach (Tile tile in tiles)
-            {
-                tileColor = ColorSet.colors[Random.Range(0, ColorSet.colors.Count)];
-                tile.GetComponent<SpriteRenderer>().color = tileColor.color;
-                tile.codeChar = tileColor.codeChar;
-                tile.transform.parent.Find("Portrait").GetComponent<SpriteRenderer>().enabled = false;
-            }
-            i++;
+            SetTiles();
         }
 
+    }
+
+    private void SetTiles()
+    {
+        TileColor tileColor;
+        foreach (Tile tile in tiles)
+        {
+            tileColor = ColorSet.colors[Random.Range(0, ColorSet.colors.Count)];
+            tile.GetComponent<SpriteRenderer>().color = tileColor.color;
+            tile.codeChar = tileColor.codeChar;
+            tile.transform.parent.Find("Portrait").GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     private void HighlightTile(Tile tile)
@@ -161,6 +171,7 @@ public class TileBoard : MonoBehaviour {
             rightKey = "d";
             selectKey = "space";
             enterKey = "e";
+            hintKey = "q";
         } else
         {
             upKey = "up";
@@ -168,7 +179,8 @@ public class TileBoard : MonoBehaviour {
             leftKey = "left";
             rightKey = "right";
             selectKey = "right shift";
-            enterKey = "enter";
+            enterKey = "return";
+            hintKey = "/";
         }
     }
 

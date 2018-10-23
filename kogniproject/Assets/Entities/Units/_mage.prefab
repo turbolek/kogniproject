@@ -250,7 +250,7 @@ MonoBehaviour:
   basicAttackPoints: 20
   cooldown: 2
   portrait: {fileID: 21300000, guid: 058ba964b27f1ab46a0b155651c54ccb, type: 3}
-  projectile: {fileID: 114578902663681498, guid: 1ca412e0fc0aa8f4c89738816d8e406f,
+  projectile: {fileID: 114578902663681498, guid: b6c9c2e356004cf4eafc8f6bf2f7a17a,
     type: 2}
 --- !u!114 &114865965569064944
 MonoBehaviour:

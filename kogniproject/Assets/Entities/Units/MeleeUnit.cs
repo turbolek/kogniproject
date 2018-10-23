@@ -10,7 +10,6 @@ public class MeleeUnit : Unit {
         {
             if (timeSinceLastAttack >= cooldown)
             {
-                Debug.Log(gameObject + " deals " + attackPoints + " damage to " + _target);
                 _target.TakeDamage(attackPoints);
                 timeSinceLastAttack = 0;
             } else

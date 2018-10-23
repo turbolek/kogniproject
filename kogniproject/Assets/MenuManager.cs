@@ -46,11 +46,13 @@ public class MenuManager : MonoBehaviour {
 
     private void HighlightButton(Button button)
     {
-        button.GetComponentInChildren<Text>().fontSize = 40;
+        Text text = button.GetComponentInChildren<Text>();
+        if (text != null) text.fontSize = 40;
     }
 
     private void DehighlightButton(Button button)
     {
-        button.GetComponentInChildren<Text>().fontSize = 30;
+        Text text = button.GetComponentInChildren<Text>();
+        if (text != null) text.fontSize = 30;
     }
 }

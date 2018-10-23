@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         Entity colliderEntity = collision.gameObject.GetComponent<Entity>();
-        if (colliderEntity == target)
+        if (colliderEntity && colliderEntity == target)
         {
             target.TakeDamage(attackPoints);
             
